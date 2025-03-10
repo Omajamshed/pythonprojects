@@ -1,0 +1,31 @@
+#defining the menu of restaurant using dict.
+menu={
+    'pizza':650,
+    'pasta':450,
+    'burger':350,
+    'lazania':320,
+    'sandwishes':550
+}
+print("\t\t\t\t\t\t\tWELCOME TO OUR RESTURAT")
+print("pizza :RS  650\npasta: RS 450\nburger : RS 350\nlazania :"
+"RS 320\nsandwishes : RS 550")
+  #declare a variable for adding the price of user order for generating customers bill
+total_amount=0
+
+# now start ordering
+item_1=input("enter the name of the item you want to order:")
+if item_1 in menu:
+    total_amount+=menu[item_1]
+    print(f'your item {item_1} has adder to your order')
+else:
+    print(f"your ordered item  is not presentin our menu")
+
+another_item=input("Do you want to add another item? [yes/no]")
+if another_item=="yes":
+    item_2=input("enter the name of second item:")
+    if item_2 in menu:
+        total_amount+=menu[item_2]
+        print(f'item {item_2} has been added to order')
+    else:
+        print(f"ordered item {item_2} is not availabal")
+print(f"the total amount of item to pay is, {total_amount} ")
