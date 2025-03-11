@@ -1,0 +1,61 @@
+import random
+
+def get_quote(category):
+    quotes = {
+        "motivational": [
+            "Believe in yourself and all that you are.\n"
+            "The secret of getting ahead is getting started.\n"
+            "Hard work beats talent when talent doesn’t work hard."
+        ],
+        "life": [
+            "Life is what happens when you're busy making other plans.\n"
+            "Do what you can, with what you have, where you are.\n"
+            "Happiness depends upon ourselves."
+        ],
+        "success": [
+            "Success is not the key to happiness. Happiness is the key to success.\n"
+            "Don’t be afraid to give up the good to go for the great.\n"
+            "Opportunities don't happen. You create them."
+        ]
+    }
+
+    if category in quotes:
+        print(f"\nHERE IS A {category.upper()} QUOTE FOR YOU:\n")
+        print(random.choice(quotes[category]))  # Display a random quote
+    else:
+        print("\nInvalid category. Please try again.")
+
+def main():
+    while True:
+        print("\nWELCOME TO THE QUOTE GENERATOR:")
+        print("\nChoose a category:")
+        print("1. Motivational\n2. Success\n3. Life\n4. Exit")
+        
+        user_choice = input("Enter your choice (1-4): ").strip().lower()
+        
+        categories = {"1": "motivational", "2": "success", "3": "life"}
+        
+        if user_choice in categories:
+            get_quote(categories[user_choice])
+        elif user_choice == "4" or user_choice == "exit":
+            print("\nThank you for using the Quote Generator. Have a great day!")
+            break
+        else:
+            print("\nInvalid choice. Please try again.")
+
+        while True:
+            another_quote = input("\nDo you want another quote? (yes/no): ").strip().lower()
+            if another_quote == "yes":
+                new_category = input("Enter another category (motivational/success/life): ").strip().lower()
+                if new_category in categories.values():
+                    get_quote(new_category)
+                else:
+                    print("\nInvalid category. Please try again.")
+            elif another_quote == "no":
+                print("\nGoodbye!")
+                return
+            else:
+                print("\nInvalid input. Please enter 'yes' or 'no'.")
+
+if __name__ == "__main__":
+    main()
