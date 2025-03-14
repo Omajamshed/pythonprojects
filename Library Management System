@@ -1,0 +1,41 @@
+         #LIBRARY MANAGEMENT SYSTEM
+Books={
+    "id-1":{"title":"DBMS","author":"Mr faiz ahmed","availability":True },
+    "id-2":{"title":"networking","author":"Mr sadiq","availability":True},
+    "id-3":{"title":"Automata","author":"Ms farheen","avaiability":False}}
+#if we want to add another id
+new_book={
+"id-4":{"title":"Artificial intelligence","author":"Mr nadeem mehmood","availablity":False}
+
+
+}
+#add new_book to a books dictionary
+Books.update(new_book)
+# print(Books)
+#print each id with their values separatly
+print("\n\t\t\t\t\t📚 List of Books in the Library:")
+for i in Books.items():
+    print(i)
+
+print("\n\t\t\t\t\t🔄 UPDATING THE STATUS OF BOOKS IN THE DICTIONARY")
+Books["id-1"]["status"]="borrowed"
+Books["id-2"]["status"]="returned"
+Books["id-3"]["status"]="borrowed"
+Books["id-4"]["status"]="returned"
+for i in Books.items():
+     print(i)
+#now checking the availability/status of books and printing them
+book={
+  "id-1": {"title": "DBMS", "author": "Mr faiz ahmed", 
+          "availability": True, "status": "borrowed"},
+  "id-2": {"title": "networking", "author": "Mr sadiq", 
+          "availability": True, "status": "returned"},
+  "id-3": {"title": "Automata", "author": "Ms farheen", 
+          "avaiability": False, "status": "borrowed"},
+  "id-4": {"title": "Artificial intelligence", "author": "Mr nadeem mehmood", 
+          "availablity": False, "status": "returned"}
+}
+print("\n\t\t\t\t\t📖 Updated Book List with Availability & Status:")
+Books.update(book)
+for i in book.items():
+    print(i)
