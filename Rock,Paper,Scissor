@@ -1,0 +1,49 @@
+"""""WORKFLOW OF PROJECT "ROCK,PAPER,SCISSOR"
+1)INPUT FROM USER(ROCK,PAPER,SCISSOR)
+2)COMPUTER CHOICE (COMPUTER WILL CHOOSE RANDOMLY NOT CONDITIONALY )
+3)RESULT PRINT
+"""
+""" "CASES OF PROJECTS"
+A)ROCK
+ROCK-ROCK=TIE
+ROCK-PAPER=PAPER WIN
+ROCK-SCISSOR=ROCK WIN
+B)PAPER
+PAPER-PAPER=TIE
+PAPER-ROCK=PAPER-WIN
+PAPER-SCISSOR=SCISSOR WIN
+C)SCISSOR
+SCISSOR-SCISSOR=TIE
+SCISSOR-ROCK=ROCK-WIN
+SCISSOR-PAPER=SCISSOR WIN"""
+import random
+print("🎮 Welcome to Rock, Paper, Scissors Game! 🎮\n")
+while True:
+    item_list=["rock","paper","scissor"]
+    user_choice=input("Enter your move (Rock,Paper,Scissor):")
+    comp_choice=random.choice(item_list)
+    print(f"USER CHOICE={user_choice}\nCOMPUTER CHOICE= {comp_choice}")
+    if user_choice==comp_choice:
+            print("Both chooses same:⚖ It's a TIE!")
+    elif user_choice=="rock":
+        if comp_choice=="paper":
+            print("paper covers :Rock= 🤖 Computer Wins! Better luck next time.")
+        else: 
+            print("Rock smashes scissor=🎊 Congratulations! YOU ARE THE WINNER! 🎊")
+    elif  user_choice=="paper":
+        if comp_choice=="scissor":
+            print("scissor cuts paper, 🤖 Computer Wins! Better luck next time.")
+        else:
+             print("paper covers rock=🎊 Congratulations! YOU ARE THE WINNER! 🎊")
+
+
+    elif     user_choice=="scissor":
+        if comp_choice=="rock":
+            print("scissor cuts rock,🎊 Congratulations! YOU ARE THE WINNER! 🎊")
+        else:
+            print("Rock smashes scissor,🤖 Computer Wins! Better luck next time.")
+        print("\nThanks for playing! 🎮")
+
+
+
+
