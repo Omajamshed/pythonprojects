@@ -1,0 +1,112 @@
+      #THREE CONCEPTS FOR ONE FRAME
+
+      #1:CREATE A CALCULATOR USING CONDITIONS
+      #2:CREATE A CALCULATOR USING FUNCTIONS
+      #3:CREATE A CACULATOR USING OBJECT ORIENTED PROGRAMMING LANGUAGE
+
+"""HOW YOU CAN CREATE A CALCULATOR USING CONDITIONS"""
+
+print("\n\t\t\t🌟 CREATING CALCULATOR USING CONDITIONS 🌟\n")
+a=int(input("enter first number:"))
+b=int(input("enter second number:"))
+operator=input("choice an operator '+','-','/','*':")
+if operator=='+':
+    result=a+b
+elif operator=='-':
+    result=a-b
+elif operator=='*':
+    result=a*b
+elif operator=='/':
+    if b==0:
+        print("❌ Error: Division by zero is not allowed.")
+    else:
+        result=a/b
+print(f"\n✅ Result: {a} {operator} {b} = {result}")
+
+
+"""CREATING CALCULATOR USING FUNCTIONS"""
+def add (a,b):
+    return (a+b)
+def sub(a,b):
+    return(a-b)
+def mul(a,b):
+    return (a*b)
+def div(a,b):
+    if b==0:
+        return "❌ Error: Division by zero is not allowed!"
+    else:
+        return a/b
+    
+print("\n\t\t🌟 CREATING CALCULATOR USING FUNCTIONS 🌟\n")
+print("➕ ADDITION (+)")
+print("➖ SUBTRACTION (-)")
+print("* MULTIPLICATION (*)")
+print("➗ DIVISION (/)")
+op=input('enter an operator:')
+num1=int(input("enter num1:"))
+num2=int(input("enter num2:"))
+if(op=="ADDITION"or op=='+'):
+    print(f"\n✅ Result: {num1} + {num2} = {add(num1, num2)}")
+elif (op=="SUBTRACTION"or op=='-'):
+    print(f"\n✅ Result: {num1} - {num2} = {sub(num1, num2)}")
+elif(op=="MULTIPLICATION"or op=='*'):
+    print(f"\n✅ Result: {num1} * {num2} = {mul(num1, num2)}")
+elif (op=="DIVISION"or op=='/'):
+    print(f"\n✅ Result: {num1} ÷ {num2} = {div(num1, num2)}")
+else:
+    print("enter valid operand")
+
+
+print("\n\t\t🌟 CREATING CALCULATOR USING OOPS 🌟\n")
+
+class Calculator:
+    def __init__(self, num1, num2):
+        self.num1 = num1
+        self.num2 = num2
+
+    def add(self):
+        """Return sum of two numbers"""
+        return self.num1 + self.num2
+
+    def sub(self):
+        """Return subtraction of two numbers"""
+        return self.num1 - self.num2
+
+    def mul(self):
+        """Return multiplication of two numbers"""
+        return self.num1 * self.num2
+
+    def div(self):
+        """Return division of two numbers"""
+        if self.num2 == 0:
+            return " Error: Division by zero is not allowed!"
+        return self.num1 / self.num2
+    
+while True:
+    print("\n🌟 Simple Calculator using OOPS 🌟")
+    print("1. Addition")
+    print("2. Subtraction")
+    print("3. Multiplication")
+    print("4. Division")
+    print("5. Exit")
+
+    choice = input("Enter choice (1/2/3/4/5): ")
+    num1 = int(input("Enter first number: "))
+    num2 = int(input("Enter second number: "))
+    calc = Calculator(num1, num2)
+
+    if choice == "1":
+        print(f"✅ Result: {calc.add()}")
+    elif choice == "2":
+        print(f"✅ Result: {calc.sub()}")
+    elif choice == "3":
+        print(f"✅ Result: {calc.mul()}")
+    elif choice == "4":
+        print(f"✅ Result: {calc.div()}")
+    elif choice == "5":
+         print("Exiting calculator. Goodbye! 👋")
+    else:
+        print("❌ Invalid choice! Please select a valid option.")
+
+    print("THANK YOU FOR USING")
+    
