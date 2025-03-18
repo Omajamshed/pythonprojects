@@ -1,0 +1,99 @@
+  #HOSPITAL MANAGEMENT SYSTEM USING OOPS
+"""create a Patient class with attributes:
+name,age,disease,is_admitted (default to False) Do not pass
+this as an argument.
+The class should include methods:
+1)-admit() - Admit the patient by setting is_admitted to
+True.
+2)-discharge() - Discharge the patient by setting is admitted to False.
+3)-display_info()- Display patient details.
+ Create a Hospital class with attribute:=
+patients (list of Patient objects). (Hint: self patients = [])
+ The class should include methods:
+-add_patient() Add a new patient to the hospital.
+-list patients()-Display information for all patients.
+search patient() - Search for a patient by name.
+**Advanced: Add a Doctor class, and assign patients to specific doctors.
+Track patient histories and appointment schedules."""
+
+print("\n\t🌟 CREATING HOSPITAL MANAGEMENT SYSTEM"
+       "\n\t USING OBJECT ORIENTED PROGRAMMING LANGUAGE🌟\n\n")
+class Patient:
+    def __init__(self, name, age, disease):
+        self.name = name
+        self.age = age
+        self.disease = disease
+        self.is_admitted = False
+
+    def admit(self):
+        self.is_admitted = True
+        return f"{self.name} has been admitted."
+
+    def discharge(self):
+        self.is_admitted = False
+        return f"{self.name} has been discharged."
+
+    def display_info(self):
+        status = "Admitted" if self.is_admitted else "Not Admitted"
+        return f"Name: {self.name}, Age: {self.age}, Disease: {self.disease}, Status: {status}"
+
+
+class Hospital:
+    def __init__(self):
+        self.patients = [
+            Patient("Alice Brown", 50, "Diabetes"),
+            Patient("Bob White", 40, "Hypertension")
+        ]
+
+    def add_patient(self, patient):
+        self.patients.append(patient)
+        return f"{patient.name} has been added to the hospital."
+
+    def list_patients(self):
+        if not self.patients:
+            return "\nNo patients in the hospital."
+        return "\n".join(patient.display_info() 
+                         for patient in self.patients)
+
+    def search_patient(self, name):
+        for patient in self.patients:
+            if patient.name== name():
+                return patient.display_info()
+        return "Patient not found."
+
+
+class Doctor:
+    def __init__(self, name, specialty):
+        self.name = name
+        self.specialty = specialty
+        self.patients = []
+
+    def assign_patient(self, patient):
+        self.patients.append(patient)
+        return f"\n{patient.name} has been assigned to Dr. {self.name}."
+
+    def list_patients(self):
+        if not self.patients:
+            return f"\nDr. {self.name} has no assigned patients."
+        return f"\nDr. {self.name}'s Patients:\n"+"\n".join(patient.display_info() 
+            for patient in self.patients)
+
+
+# creating instance of  classes and method
+if __name__ == "__main__":
+    hospital = Hospital()
+    print("\n\t🌟 INITIAL LIST OF PATIENT IN THE HOSPITAL:🌟\n")
+    print(hospital.list_patients())
+    
+    patient1 = Patient("ali", 45, "Flu")
+    patient2 = Patient("ahmed", 30, "Fever")
+
+    print("\n\t🌟ADDITION OF PATIENTS :🌟\n")
+    print(hospital.add_patient(patient1))
+    print(hospital.add_patient(patient2))
+
+    print("\n\t🌟UPDATED PATIENTS LISTS: 🌟\n")
+    print(hospital.list_patients())
+    doctor1 = Doctor("Adams", "General Medicine")
+    print(doctor1.assign_patient(patient1))
+    print(doctor1.list_patients())
