@@ -1,0 +1,106 @@
+#SOME KEY CONCEPT RELATED TO PROJECT#
+"""Creating a SCHOOL MANAGEMENT SYSTEM in Python using INHERITANCE.
+1)Create a base class Person with the attributes 
+:name (string):age (integer):address (string)....
+2)A method display_info() to return the person's details...
+3)Create a derived class Student that inherits from Person and adds:
+student_id (string),grade (string)
+4)Override the display_info() method to include student details...
+5)Create another derived class Teacher that inherits from Person and adds:
+teacher_id (string),subject (string),class_timing (string) 
+(e.g., "9:00 AM - 10:00 AM"),teaching_class (string) (e.g., "10th Grade")
+6)Override the display_info() method to include teacher details.
+7)Create a School class that:
+Manages lists of students and teachers.
+Has methods to add, display, and search for students and teachers by name.
+8)Implement a search function that allows finding a 
+student or teacher by name and displays their details."""
+#base class 
+class Person:
+    def __init__(self, name, age, address):
+        self.name = name
+        self.age = age
+        self.address = address
+#method display_info() to return the person's details
+    def display_info(self):
+        return f"Name: {self.name},Age:{self.age},Address: {self.address}"
+
+# Derived Class for Students and inherit person class
+class Student(Person):
+    def __init__(self, name, age, address, student_id, grade):
+        super().__init__(name, age, address)
+        self.student_id = student_id
+        self.grade = grade
+#Override the display_info() method to include student details
+    def display_info(self):
+        return f"[Student] {super().display_info()}, ID: {self.student_id}, Grade: {self.grade}"
+
+# Derived Class for Teachers which in inherited with person class 
+class Teacher(Person):
+    def __init__(self, name, age, address, teacher_id, subject, class_timing, teaching_class):
+        super().__init__(name, age, address)
+        self.teacher_id = teacher_id
+        self.subject = subject
+        self.class_timing = class_timing
+        self.teaching_class = teaching_class
+# Override the display_info() method to include teacher details
+    def display_info(self):
+        return f"[Teacher] {super().display_info()}, ID: {self.teacher_id}, Subject: {self.subject}, Teaching Class: {self.teaching_class}, Class Timing: {self.class_timing}"
+
+# School class manage list of student and teacher
+class School:
+    def __init__(self, name):
+        self.name = name
+        self.students = []
+        self.teachers = []
+#mcreating methods to add, display, and search for students
+#  and teachers by name.
+    def add_student(self, student):
+        self.students.append(student)
+        print(f"Student {student.name} added successfully.")
+
+    def add_teacher(self, teacher):
+        self.teachers.append(teacher)
+        print(f"Teacher {teacher.name} added successfully.")
+
+    def display_students(self):
+        print("\nStudents List:")
+        for student in self.students:
+            print(student.display_info())
+
+    def display_teachers(self):
+        print("\nTeachers List:")
+        for teacher in self.teachers:
+            print(teacher.display_info())
+
+    def search_person(self, name):
+        for student in self.students:
+            if student.name == name:
+                return student.display_info()
+        for teacher in self.teachers:
+            if teacher.name == name:
+                return teacher.display_info()
+        return "Person not found."
+
+# creating instance of classes 
+if __name__ == "__main__":
+    school = School("Army public school ")
+    
+    student1 = Student("Ali", 15, "123 Street", "S101", "10th")
+    student2 = Student("Hamza", 14, "456 Avenue", "S102", "9th")
+    
+    teacher1 = Teacher("Mr.Joe", 40, "789 Road", 
+        "T201","Math", "9:00 AM - 10:00 AM", "10th Grade")
+    teacher2 = Teacher("Ms. John", 35, "321 Blvd", 
+        "T202", "Science", "11:00 AM - 12:00 PM", "9th Grade")
+#calling methods  
+    school.add_student(student1)
+    school.add_student(student2)
+    school.add_teacher(teacher1)
+    school.add_teacher(teacher2)
+    
+    school.display_students()
+    school.display_teachers()
+    
+    print("\nSearching for 'Ali':", school.search_person("Ali"))
+    print("Searching for 'Mr. joe':", school.search_person("Mr. joe"))
