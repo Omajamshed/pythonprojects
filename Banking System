@@ -1,0 +1,85 @@
+What is Abstraction?
+Abstraction is the concept of hiding implementation details and exposing only the necessary functionalities to the user  
+This makes the code cleaner, more secure, and easier to manage.
+"""Create an abstract class BankAccount that includes the following:
+1)that contain attributes accountholder and balance
+2)Abstract methods for:
+    deposit(amount): Adds money to the account.
+    withdraw(amount): Deducts money from the account.
+    check_balance(): Displays the current account balance.
+3)Implement a UserAccount class that inherits from BankAccount 
+    and provide implementations for the abstract methods:
+    deposit(amount): Increases balance if the amount is valid.
+    withdraw(amount): Deducts money only if the balance is sufficient.
+    check_balance(): Displays the current balance.
+4)Implement a user-friendly interface that allows users to
+    interact with the banking system by:
+    Entering their name to create an account.
+    Selecting options to:
+    Check balance.
+    Deposit money.
+    Withdraw money.
+    Exit the system.
+Displaying appropriate messages for successful transactions."""
+
+print("\t\t\t\tBANKING SYSTEM USING ABSTRACTION\t")
+
+from abc import ABC, abstractmethod  
+
+# Abstract class
+class BankAccount(ABC):  
+    def __init__(self, account_holder, balance=0):  
+        self.account_holder = account_holder  
+        self.balance = balance  
+    @abstractmethod  
+    def deposit(self, amount):  
+        pass  
+    @abstractmethod  
+    def withdraw(self, amount):  
+        pass  
+    @abstractmethod  
+    def check_balance(self):  
+        pass  
+#  implementing abstract methods
+class UserAccount(BankAccount):  
+    def deposit(self, amount):  
+        if amount > 0:  
+            self.balance += amount  
+            print(f"{amount} deposited successfully!")  
+        else:  
+            print(" Invalid deposit amount!")  
+    def withdraw(self, amount):  
+        if amount > self.balance:  
+            print(" Insufficient balance!")  
+        elif amount <= 0:  
+            print(" Invalid withdrawal amount!")  
+        else:  
+            self.balance -= amount  
+            print(f" {amount} withdrawn successfully!")  
+    def check_balance(self):  
+        print(f" Your balance is: {self.balance}")  
+
+# User Interaction
+print("\n🌟 Welcome to the Banking System 🌟")
+
+name = input("Enter your name: ")  
+user = UserAccount(name)  
+while True:  
+    print("\n1️⃣ Check Balance")  
+    print("2️⃣ Deposit Money")  
+    print("3️⃣ Withdraw Money")  
+    print("4️⃣ Exit")  
+    choice = input("Enter your choice (1-4): ")  
+    if choice == "1":  
+        user.check_balance()  
+    elif choice == "2":  
+        amount = float(input("Enter deposit amount: "))  
+        user.deposit(amount)  
+    elif choice == "3":  
+        amount = float(input("Enter withdrawal amount: "))  
+        user.withdraw(amount)  
+    elif choice == "4":  
+        print("🚪 Exiting... Thank you for using our banking system!")  
+        break  
+    else:  
+        print("❌ Invalid choice! Please try again.")  
