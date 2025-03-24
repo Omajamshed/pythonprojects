@@ -1,0 +1,93 @@
+    #WHAT IS ENCAPSULATION
+"""  process of hiding the internal details of an object 
+    and restricting direct access to some of its attributes and methods. 
+    Instead, access is provided through public methods (getters and setters)."""
+     # SOME KEY CONCEPTS RELATED TO PROGRAM
+"""  Implements a Shopping Cart System using Encapsulation. 
+     The program should:
+     Display a list of available products with their prices.
+     Allow the user to select a product by entering its number.
+     After adding a product, ask the user if they want to add more products (Yes/No).
+     If the user selects "Yes", allow them to add more products.
+     If the user selects "No", display the final shopping cart with the total price.
+    Ensure that the program handles invalid inputs gracefully."""
+
+#step1 create a class product
+class Product:
+    def __init__(self, name, price):
+        self.__name = name
+        self.__price = price  # Private attribute
+#creating methods
+    def get_name(self):
+        return self.__name
+
+    def get_price(self):
+        return self.__price
+
+    def get_details(self):
+        return f"{self.__name}: ${self.__price:.2f}"
+
+#creating class shopping card
+class ShoppingCart:
+    def __init__(self):
+        self.__cart = []  # Private cart list
+#creating methods
+    def add_product(self, product):
+        if isinstance(product, Product):
+            self.__cart.append(product)
+            print(f"✅ Added {product.get_details()} to cart.")
+        else:
+            print(" Invalid product!")
+
+    def view_cart(self):
+        if not self.__cart:
+            print("\n🛒 Your cart is empty.\n")
+        else:
+            print("\n🛍 **These Products Are Added to Cart:**")
+            total_price = 0
+            for product in self.__cart:
+                print(f"{product.get_details()}")
+                total_price += product.get_price()
+            
+# Apply Eid discount if total price is more than $500
+            if total_price > 500:
+                discount = total_price * 0.10
+                total_price -= discount
+                print(f"\n🎉**Advance Eid Mubarak! You got a 10% discount of ${discount:.2f}!**")
+
+            print(f"\n **Total Price after Discount: ${total_price:.2f}**\n")
+
+
+# List of Available Products
+products = [
+    Product("Laptop", 1000),
+    Product("Mouse", 50),
+    Product("Keyboard", 80),
+    Product("Monitor", 300),
+]
+
+def display_products():
+    print("\n**Available Products:**")
+    for index, product in enumerate(products, start=1):
+        print(f"{index}. {product.get_details()}")
+
+# Create Shopping Cart
+cart = ShoppingCart()
+
+# Display Initial Product List
+display_products()
+
+# User Input to Add Products
+while True:
+    choice = int(input("\nEnter the product number to add to cart: "))
+    if 1 <= choice <= len(products):
+            cart.add_product(products[choice - 1])
+    else:
+            print("Invalid choice. Enter a valid product number.")
+            continue 
+
+    more_product = input("Do you want to add more products? (yes/no): ")
+    if more_product != "yes":
+            break
+# Display Cart After Adding Products
+cart.view_cart()
